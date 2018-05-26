@@ -8,6 +8,6 @@ public class EchoController {
 
     @RequestMapping("/")
     public String echo() {
-        return "It works!";
+        return "It works, too!";
     }
 }
