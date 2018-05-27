@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Messages</title>
+</head>
+<body>
+<h1>Messages</h1>
+<ul>
+    <li data-th-each="message : ${messages}">
+        <p data-th-text="${message.getCreated()}"></p>
+        <p data-th-text="${message.getMessage()}"></p>
+    </li>
+</ul>
+
+</body>
+
+</html>
