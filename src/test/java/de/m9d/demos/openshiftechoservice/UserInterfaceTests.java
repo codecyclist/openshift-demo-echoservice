@@ -32,7 +32,7 @@ public class UserInterfaceTests {
     @Test
     public void indexPage() throws Exception {
         mockMvc.perform(get("/"))
-                .andExpect(content().string(containsString("All your messages are belong to us.")));
+                .andExpect(content().string(containsString("Welcome to the")));
     }
 
     @Test
