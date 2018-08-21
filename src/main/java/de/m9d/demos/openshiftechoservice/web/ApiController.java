@@ -13,10 +13,10 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController("/api/v1/messages")
-public class EchoController  {
+public class ApiController {
     private DeadMailboxService deadMailboxService;
 
-    public EchoController(DeadMailboxService deadMailboxService) {
+    public ApiController(DeadMailboxService deadMailboxService) {
         this.deadMailboxService = deadMailboxService;
     }
 

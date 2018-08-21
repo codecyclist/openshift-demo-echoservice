@@ -15,8 +15,8 @@ public class DeadMailboxService {
         messages = new ArrayList<>();
     }
 
-    public void putMessage(String message) {
-        messages.add(new Message(message));
+    public void putMessage(Message message) {
+        messages.add(message);
     }
 
     public List<Message> getMessages() {
