@@ -5,9 +5,10 @@
 </head>
 <body>
 <h1>Welcome to the dead letter service.</h1>
-<form action="/api/v1/messages" method="post">
-    <input type="text" id="message" name="message"/>
-    <input type="submit">
+<form action="#" th:action="@{/}" method="post" th:object="${message}">
+    <input type="text"  th:field="*{content}" />
+    <span id="email.error" th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></span>
+    <input type="submit" value="submit"/>
 </form>
 </body>
 

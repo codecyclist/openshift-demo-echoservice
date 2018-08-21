@@ -2,16 +2,18 @@ package de.m9d.demos.openshiftechoservice.web;
 
 import de.m9d.demos.openshiftechoservice.domain.Message;
 import de.m9d.demos.openshiftechoservice.service.DeadMailboxService;
+import org.springframework.http.HttpHeaders;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.view.RedirectView;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController("/api/v1/messages")
-public class EchoController {
+public class EchoController  {
     private DeadMailboxService deadMailboxService;
 
     public EchoController(DeadMailboxService deadMailboxService) {
@@ -19,10 +21,18 @@ public class EchoController {
     }
 
     @PostMapping()
-    public RedirectView putMessage(@RequestParam("message") String message) {
+    public String putMessage(@ModelAttribute("message")  @Valid Message message, BindingResult bindingResult) {
+        HttpHeaders headers  = new HttpHeaders();
+        headers.add(HttpHeaders.LOCATION,"/");
+
+        if (bindingResult.hasErrors()) {
+            return "index";
+        }
         deadMailboxService.putMessage(message);
-        return new RedirectView("/");
+
+        return "redirect:/";
     }
+
 
     @GetMapping()
     public List<Message> getMessages() {
