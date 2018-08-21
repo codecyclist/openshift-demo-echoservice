@@ -2,7 +2,6 @@ package de.m9d.demos.openshiftechoservice.web;
 
 import de.m9d.demos.openshiftechoservice.domain.Message;
 import de.m9d.demos.openshiftechoservice.service.DeadMailboxService;
-import org.springframework.http.HttpHeaders;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,9 +21,6 @@ public class ApiController {
 
     @PostMapping()
     public String putMessage(@ModelAttribute("message")  @Valid Message message, BindingResult bindingResult) {
-        HttpHeaders headers  = new HttpHeaders();
-        headers.add(HttpHeaders.LOCATION,"/");
-
         if (bindingResult.hasErrors()) {
             return "index";
         }
@@ -32,7 +28,6 @@ public class ApiController {
 
         return "redirect:/";
     }
-
 
     @GetMapping()
     public List<Message> getMessages() {
